@@ -1,14 +1,26 @@
-
 <script setup>
-
+    import { onMounted, reactive } from 'vue'
     import {FormKit} from '@formkit/vue'
-    import{ useRouter } from 'vue-router'
+    import{ useRouter, useRoute } from 'vue-router'
     import ClienteService from '../services/ClienteService'
     import RouterLink from '../components/UI/RouterLink.vue'
     import Heading from '../components/UI/Heading.vue'
 
 
     const router = useRouter()
+    const route = useRoute()
+
+    const { clientId } = route.params
+
+    const formData = reactive ({})
+
+    onMounted(() => {
+        ClienteService.getClient(clientId)
+            .then(({data}) => {
+                Object.assign(formData,data)
+            })
+            .catch(error => console.log(error))
+    })
 
     defineProps({
         titulo: {
@@ -18,12 +30,8 @@
 
 
     const handleSubmit = (data) => {
-        data.estado = false
-        ClienteService.postClient(data)
-            .then(respuesta =>{
-                console.log(respuesta)
-                router.push({name: 'listado-clientes'})
-            })
+        ClienteService.updateClient(clientId, data)
+            .then(() => router.push({name: 'listado-clientes'}))
             .catch(error => console.log(error))
         }
 </script>
@@ -44,9 +52,10 @@
             <div class="mx-auto md:w-2/3 py20 px-6">
             <FormKit
                 type="form"
-                submit-label="Agregar Cliente"
+                submit-label="Guardar cambios"
                 incomplete-message="No se pudo enviar, revisa los campos"
                 @submit="handleSubmit"
+                :value="formData"
             >
                 <FormKit
                 type="text"
@@ -56,6 +65,7 @@
                 prefix-icon="add"
                 validation="required"
                 :validation-messages="{required:'El nombre del Cliente es obligatorio'}"
+                v-model="formData.name"
                 />
 
                 <FormKit
@@ -66,6 +76,7 @@
                 prefix-icon="add"
                 validation="required"
                 :validation-messages="{required:'Los Apellidos del Cliente son obligatorios'}"
+                v-model="formData.lastName"
                 />
 
                 <FormKit
@@ -75,6 +86,7 @@
                 placeholder="Estado de Cliente"
                 help="Coloca el Nombre del Cliente que deseas registrar"
                 :validation-messages="{required:'El Email del Cliente es obligatorio', email: 'Coloca un email valido'}"
+                v-model="formData.estado"
                 />
 
                 <FormKit
@@ -86,6 +98,7 @@
                 help="Coloca el Nombre del Cliente que deseas registrar"
                 validation="required|email"
                 :validation-messages="{required:'El Email del Cliente es obligatorio', email: 'Coloca un email valido'}"
+                v-model="formData.email"
                 />
                 
                 <FormKit
@@ -97,6 +110,7 @@
                 help="Coloca el Telefono del Cliente que deseas registrar"
                 validation="?matches:/^[0-9]{3}-[0-9]{3}-[0-9]{4}$/"
                 :validation-messages="{ matches: 'El formato no es valido' }"
+                v-model="formData.phone"
                 />
 
                 <FormKit
@@ -107,6 +121,7 @@
                 prefix-icon="add"
                 validation="required"
                 :validation-messages="{required:'La Direccion del Cliente es obligatoria'}"
+                v-model="formData.address"
                 />
 
                 <FormKit
@@ -117,6 +132,7 @@
                 prefix-icon="add"
                 validation="required"
                 :validation-messages="{required:'La Ciudad del Cliente es obligatoria'}"
+                v-model="formData.city"
                 />
 
                 <FormKit
@@ -127,6 +143,7 @@
                 prefix-icon="add"
                 validation="required"
                 :validation-messages="{required:'El Codigo Postal del Cliente es obligatorio'}"
+                v-model="formData.postalCode"
                 />
 
             </FormKit>
