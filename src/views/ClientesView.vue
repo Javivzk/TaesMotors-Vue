@@ -29,10 +29,19 @@
     const actualizarEstado = ({clientId, estado}) => {
         ClienteService.updateEstado(clientId, {estado: !estado})
             .then(() => {
-
+                const i = clientes.value.findIndex(cliente => cliente.clientId === clientId)
+                clientes.value[i].estado = !estado
             })
             .catch(error => console.log(error))
     }
+
+    const eliminarCliente = clientId => {
+        ClienteService.deleteClient(clientId)
+            .then(() => {
+                clientes.value = clientes.value.filter(cliente => cliente.clientId !== clientId)
+            })
+            .catch(error => console.log(error))
+    }       
 </script>
 
 <template>
@@ -65,9 +74,10 @@
                         <tbody class="divide-y divide-gray-200 bg-white">
                             <Cliente
                                 v-for="cliente in clientes"
-                                :key="cliente.id"
+                                :key="cliente.clientId"
                                 :cliente="cliente"
                                 @actualizar-estado="actualizarEstado"
+                                @eliminar-cliente="eliminarCliente"
                             />
 
                         </tbody>
