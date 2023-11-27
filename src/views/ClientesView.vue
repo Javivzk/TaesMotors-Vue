@@ -5,6 +5,8 @@
     import RouterLink from '../components/UI/RouterLink.vue';
     import Heading from '../components/UI/Heading.vue';
     import Cliente from '../components/Cliente.vue';
+    import Header from '../components/UI/Header.vue';
+
 
 
     const clientes = ref([])
@@ -46,13 +48,15 @@
 
 <template>
     <div>
+        <Heading>{{ titulo }}</Heading>
+
         <div class="flex justify-end">
             <RouterLink  to="agregar-cliente">
                 Agregar Cliente
             </RouterLink>
         </div>
 
-        <Heading>{{ titulo }}</Heading>
+
 
         <div v-if="existenClientes" class="flow-root mx-auto  mt-10 p-5 bg-white shadow">
             <div class="-my-2 -mx-4 overflow-x-auto sm:-mx-6 lg:-mx-8">

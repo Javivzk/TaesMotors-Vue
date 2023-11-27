@@ -2,7 +2,7 @@
     import { onMounted, reactive } from 'vue'
     import {FormKit} from '@formkit/vue'
     import{ useRouter, useRoute } from 'vue-router'
-    import ClienteService from '../services/ClienteService'
+    import PedidoService from '../services/PedidoService'
     import RouterLink from '../components/UI/RouterLink.vue'
     import Heading from '../components/UI/Heading.vue'
 
@@ -10,12 +10,12 @@
     const router = useRouter()
     const route = useRoute()
 
-    const { clientId } = route.params
+    const { orderId } = route.params
 
     const formData = reactive ({})
 
     onMounted(() => {
-        ClienteService.getClient(clientId)
+        PedidoService.getOrder(orderId)
             .then(({data}) => {
                 Object.assign(formData,data)
             })
@@ -30,8 +30,8 @@
 
 
     const handleSubmit = (data) => {
-        ClienteService.updateClient(clientId, data)
-            .then(() => router.push({name: 'listado-clientes'}))
+        PedidoService.updateOrder(orderId, data)
+            .then(() => router.push({name: 'listado-pedidos'}))
             .catch(error => console.log(error))
         }
 </script>
@@ -40,7 +40,7 @@
     <div>
         <div class="flex justify-end">
             <RouterLink  
-                to="listado-clientes"
+                to="listado-pedidos"
             >
                 Volver
             </RouterLink>
@@ -59,91 +59,55 @@
             >
                 <FormKit
                 type="text"
-                label="Nombre"
-                name="name"
-                placeholder="Nombre de Cliente"
+                label="ID CLIENTE"
+                name="clientId"
+                placeholder="ID del Cliente"
                 prefix-icon="add"
                 validation="required"
                 :validation-messages="{required:'El nombre del Cliente es obligatorio'}"
-                v-model="formData.name"
+                v-model="formData.clientId"
                 />
 
                 <FormKit
                 type="text"
-                label="Apellidos"
-                name="lastName"
-                placeholder="Apellidos del Cliente"
+                label="ID COCHE"
+                name="carId"
+                placeholder="ID del Coche"
                 prefix-icon="add"
                 validation="required"
                 :validation-messages="{required:'Los Apellidos del Cliente son obligatorios'}"
-                v-model="formData.lastName"
+                v-model="formData.carId"
+                />
+
+                <FormKit
+                type="text"
+                label="ID EMPLEADO"
+                name="employeeId"
+                placeholder="ID del Empleado"
+                prefix-icon="email"
+                help="Coloca el Nombre del Cliente que deseas registrar"
+                :validation-messages="{required:'El Email del Cliente es obligatorio', email: 'Coloca un email valido'}"
+                v-model="formData.employeeId"
+                />
+                
+                <FormKit
+                type="text"
+                label="Precio"
+                name="price"
+                prefix-icon="telephone"
+                help="Coloca el Telefono del Cliente que deseas registrar"
+                :validation-messages="{ matches: 'El formato no es valido' }"
+                v-model="formData.price"
                 />
 
                 <FormKit
                 type="text"
                 label="Estado"
-                name="estado"
-                placeholder="Estado de Cliente"
-                help="Coloca el Estado del Cliente que deseas registrar"
-                :validation-messages="{required:'El Estado del Cliente es obligatorio', email: 'Coloca un email valido'}"
-                v-model="formData.estado"
-                />
-
-                <FormKit
-                type="email"
-                label="Email"
-                name="email"
-                placeholder="Email de Cliente"
-                prefix-icon="email"
+                name="paid"
+                placeholder="Estado del Pedido"
                 help="Coloca el Nombre del Cliente que deseas registrar"
-                validation="required|email"
                 :validation-messages="{required:'El Email del Cliente es obligatorio', email: 'Coloca un email valido'}"
-                v-model="formData.email"
-                />
-                
-                <FormKit
-                type="text"
-                label="Telefono"
-                name="phone"
-                placeholder="Telefono: XXX-XXX-XXXX"
-                prefix-icon="telephone"
-                help="Coloca el Telefono del Cliente que deseas registrar"
-                validation="?matches:/^[0-9]{3}-[0-9]{3}-[0-9]{4}$/"
-                :validation-messages="{ matches: 'El formato no es valido' }"
-                v-model="formData.phone"
-                />
-
-                <FormKit
-                type="text"
-                label="Direccion"
-                name="address"
-                placeholder="Direccion del Cliente"
-                prefix-icon="add"
-                validation="required"
-                :validation-messages="{required:'La Direccion del Cliente es obligatoria'}"
-                v-model="formData.address"
-                />
-
-                <FormKit
-                type="text"
-                label="Ciudad"
-                name="city"
-                placeholder="Ciudad del Cliente"
-                prefix-icon="add"
-                validation="required"
-                :validation-messages="{required:'La Ciudad del Cliente es obligatoria'}"
-                v-model="formData.city"
-                />
-
-                <FormKit
-                type="text"
-                label="Codigo Postal"
-                name="postalCode"
-                placeholder="Codigo Postal del Cliente"
-                prefix-icon="add"
-                validation="required"
-                :validation-messages="{required:'El Codigo Postal del Cliente es obligatorio'}"
-                v-model="formData.postalCode"
+                v-model="formData.paid"
                 />
 
             </FormKit>
