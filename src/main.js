@@ -1,4 +1,4 @@
-import './assets/main.css'
+import './assets/styles/main.css'
 import { plugin,defaultConfig } from '@formkit/vue'
 import config from '../formkit.config'
 import { createApp } from 'vue'
