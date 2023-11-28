@@ -1,22 +1,22 @@
 import api from "../lib/axios"
 
 export default {
-    getClients() {
-        return api.get('/clients')
+    getCustomers() {
+        return api.get('/customers')
     },
-    postClient(data) {
-        return api.post('/clients', data)
+    postCustomer(data) {
+        return api.post('/customers', data)
     },
-    getClient(clientId) {
-        return api.get('/clients/' + clientId)
+    getCustomer(customerId) {
+        return api.get('/customers/' + customerId)
     },
-    updateClient(clientId, data) {
-        return api.patch('/clients/' + clientId, data)
+    updateCustomer(customerId, data) {
+        return api.patch('/customers/' + customerId, data)
     },
-    updateEstado(clientId, data) {
-        return api.patch('/clients/' + clientId, data)
+    updateEstado(customerId, data) {
+        return api.patch('/customers/' + customerId, data)
     },
-    deleteClient(clientId) {
-        return api.delete('/clients/' + clientId)
+    deleteCustomer(customerId) {
+        return api.delete('/customers/' + customerId)
     }
 }

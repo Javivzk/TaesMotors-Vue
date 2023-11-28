@@ -12,8 +12,19 @@
 
     const { orderId } = route.params
 
-    const formData = reactive ({})
-
+    const formData = reactive({
+    customer: {
+        customerId: '', // Tipo de dato dependiendo de lo que esperas aquí
+    },
+    car: {
+        carId: '', // Tipo de dato dependiendo de lo que esperas aquí
+    },
+    extra: {
+        customerId: '', // Tipo de dato dependiendo de lo que esperas aquí
+    },
+    totalPrice: '', // Tipo de dato dependiendo de lo que esperas aquí
+    paid: '', // Tipo de dato dependiendo de lo que esperas aquí
+    });
     onMounted(() => {
         PedidoService.getOrder(orderId)
             .then(({data}) => {
@@ -60,12 +71,12 @@
                 <FormKit
                 type="text"
                 label="ID CLIENTE"
-                name="clientId"
+                name="customerId"
                 placeholder="ID del Cliente"
                 prefix-icon="add"
                 validation="required"
                 :validation-messages="{required:'El nombre del Cliente es obligatorio'}"
-                v-model="formData.clientId"
+                v-model="formData.customer.customerId"
                 />
 
                 <FormKit
@@ -76,18 +87,18 @@
                 prefix-icon="add"
                 validation="required"
                 :validation-messages="{required:'Los Apellidos del Cliente son obligatorios'}"
-                v-model="formData.carId"
+                v-model="formData.car.carId"
                 />
 
                 <FormKit
                 type="text"
                 label="ID EMPLEADO"
-                name="employeeId"
+                name="extraId"
                 placeholder="ID del Empleado"
                 prefix-icon="email"
                 help="Coloca el Nombre del Cliente que deseas registrar"
                 :validation-messages="{required:'El Email del Cliente es obligatorio', email: 'Coloca un email valido'}"
-                v-model="formData.employeeId"
+                v-model="formData.extra.extraId"
                 />
                 
                 <FormKit
@@ -97,7 +108,7 @@
                 prefix-icon="telephone"
                 help="Coloca el Telefono del Cliente que deseas registrar"
                 :validation-messages="{ matches: 'El formato no es valido' }"
-                v-model="formData.price"
+                v-model="formData.totalPrice"
                 />
 
                 <FormKit
