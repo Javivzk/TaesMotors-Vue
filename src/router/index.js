@@ -20,7 +20,7 @@ const router = createRouter({
       props: { titulo: 'Busqueda de clientes'}
     },
     {
-      path: '/clientes',
+      path: '/listado-clientes',
       name: 'listado-clientes',
       component: import('../views/ClientesView.vue'),
       props: { titulo: 'Listado de Clientes' }
@@ -44,7 +44,7 @@ const router = createRouter({
       props: { titulo: 'Agregar Clientes' }
     },
     {
-      path: '/editar-cliente/:clientId',
+      path: '/editar-cliente/:customerId',
       name: 'editar-cliente',
       component: () => import('../views/EditarClienteView.vue'),
       props: { titulo: 'Editar Cliente' }

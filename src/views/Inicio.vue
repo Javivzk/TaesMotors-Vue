@@ -23,6 +23,16 @@
         <h1 class="text-4xl font-bold mb-6">Listado de Coches</h1>
       </router-link>
     </div>
+    <div class="container mx-auto mt-10 text-center">
+      <router-link to="/listado-pedidos">
+        <h1 class="text-4xl font-bold mb-6">Listado de Pedidos</h1>
+      </router-link>
+    </div>
+    <div class="container mx-auto mt-10 text-center">
+      <router-link to="/listado-clientes">
+        <h1 class="text-4xl font-bold mb-6">Listado de Clientes</h1>
+      </router-link>
+    </div>
   </div>
 </template>
   

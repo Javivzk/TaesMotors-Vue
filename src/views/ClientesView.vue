@@ -12,7 +12,7 @@
     const clientes = ref([])
 
     onMounted(() => {
-        ClienteService.getClients()
+        ClienteService.getCustomers()
             .then(({data}) => clientes.value = data)
             .catch(error => console.log('Hubo un error'))
     })
@@ -28,19 +28,19 @@
         return clientes.value.length > 0
     })
 
-    const actualizarEstado = ({clientId, estado}) => {
-        ClienteService.updateEstado(clientId, {estado: !estado})
+    const actualizarEstado = ({customerId, estado}) => {
+        ClienteService.updateEstado(customerId, {estado: !estado})
             .then(() => {
-                const i = clientes.value.findIndex(cliente => cliente.clientId === clientId)
+                const i = clientes.value.findIndex(cliente => cliente.customerId === customerId)
                 clientes.value[i].estado = !estado
             })
             .catch(error => console.log(error))
     }
 
-    const eliminarCliente = clientId => {
-        ClienteService.deleteClient(clientId)
+    const eliminarCliente = customerId => {
+        ClienteService.deleteClient(customerId)
             .then(() => {
-                clientes.value = clientes.value.filter(cliente => cliente.clientId !== clientId)
+                clientes.value = clientes.value.filter(cliente => cliente.customerId !== customerId)
             })
             .catch(error => console.log(error))
     }       
@@ -78,7 +78,7 @@
                         <tbody class="divide-y divide-gray-200 bg-white">
                             <Cliente
                                 v-for="cliente in clientes"
-                                :key="cliente.clientId"
+                                :key="cliente.customerId"
                                 :cliente="cliente"
                                 @actualizar-estado="actualizarEstado"
                                 @eliminar-cliente="eliminarCliente"
