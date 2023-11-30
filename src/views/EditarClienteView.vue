@@ -10,12 +10,12 @@
     const router = useRouter()
     const route = useRoute()
 
-    const { clientId } = route.params
+    const { customerId } = route.params
 
     const formData = reactive ({})
 
     onMounted(() => {
-        ClienteService.getClient(clientId)
+        ClienteService.getCustomer(customerId)
             .then(({data}) => {
                 Object.assign(formData,data)
             })
@@ -30,7 +30,7 @@
 
 
     const handleSubmit = (data) => {
-        ClienteService.updateClient(clientId, data)
+        ClienteService.updateClient(customerId, data)
             .then(() => router.push({name: 'listado-clientes'}))
             .catch(error => console.log(error))
         }
