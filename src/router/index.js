@@ -2,6 +2,7 @@ import { createRouter, createWebHistory } from 'vue-router'
 import listadoClientes from '../views/ClientesView.vue'
 import listadoPedidos from '../views/PedidosView.vue'
 import listadoCoches from '../views/CochesView.vue'
+import listadoEmpleados from '../views/EmpleadosView.vue'
 import Inicio from '../views/Inicio.vue'
 
 const router = createRouter({
@@ -26,6 +27,12 @@ const router = createRouter({
       props: { titulo: 'Listado de Clientes' }
     },
     {
+      path: '/listado-empleados',
+      name: 'listado-empleados',
+      component: import('../views/EmpleadosView.vue'),
+      props: { titulo: 'Listado de Empleados' }
+    },
+    {
       path: '/listado-coches',
       name: 'listado-coches',
       component: import('../views/CochesView.vue'),
@@ -48,6 +55,18 @@ const router = createRouter({
       name: 'editar-cliente',
       component: () => import('../views/EditarClienteView.vue'),
       props: { titulo: 'Editar Cliente' }
+    },
+    {
+      path: '/agregar-empleado',
+      name: 'agregar-empleado',
+      component: () => import('../views/NuevoEmpleadoView.vue'),
+      props: { titulo: 'Agregar Empleados' }
+    },
+    {
+      path: '/editar-empleado/:employeeId',
+      name: 'editar-empleado',
+      component: () => import('../views/EditarEmpleadoView.vue'),
+      props: { titulo: 'Editar Empleado' }
     },
     {
       path: '/agregar-coche',

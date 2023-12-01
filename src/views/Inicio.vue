@@ -69,6 +69,11 @@
         <h1 class="text-4xl font-bold mb-6">Listado de Clientes</h1>
       </router-link>
     </div>
+    <div class="container mx-auto mt-10 text-center">
+      <router-link to="/listado-empleados">
+        <h1 class="text-4xl font-bold mb-6">Listado de Empleados</h1>
+      </router-link>
+    </div>
   </div>
 </template>
   
