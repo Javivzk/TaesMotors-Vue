@@ -3,19 +3,19 @@
     import { RouterLink } from 'vue-router';
 
     const props = defineProps({
-        cliente: {
+        empleado: {
             type: Object
         }
     })
 
-    defineEmits(['actualizar-estado', 'eliminar-cliente'])
+    defineEmits(['actualizar-estado', 'eliminar-empleado'])
 
-    const nombreCliente = computed(() => {
-        return props.cliente.name 
+    const nombreEmpleado = computed(() => {
+        return props.empleado.name 
     })
 
-    const estadoCliente = computed(() => {
-        return props.cliente.clubMember
+    const estadoEmpleado = computed(() => {
+        return props.empleado.estado
     })
 </script>
 
@@ -23,45 +23,45 @@
 <template>
     <tr>
         <td class="whitespace-nowrap py-3 pl-4 text-sm text-gray-500">
-            <p class="font-medium text-gray-900">{{ cliente.name }}</p>
+            <p class="font-medium text-gray-900">{{ empleado.name }}</p>
         </td>
         <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
-            <p class="font-medium text-gray-900">{{ cliente.lastName }}</p>
+            <p class="font-medium text-gray-900">{{ empleado.lastName }}</p>
         </td>
         <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
-            <p class="font-medium text-gray-900">{{ cliente.phone }}</p>
+            <p class="font-medium text-gray-900">{{ empleado.phone }}</p>
         </td>
         <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
             <button
                 class="inline-flex rounded-full px-2 text-xs font-semibold leading-5"
-                :class="[estadoCliente ? 'bg-green-100 text-green-800' : 'bg-red-100 text-red-800']"
+                :class="[estadoEmpleado ? 'bg-green-100 text-green-800' : 'bg-red-100 text-red-800']"
                 @click="$emit('actualizar-estado',
-                 {customerId: cliente.customerId, estado: cliente.clubMember})"
+                 {employeeId: empleado.employeeId, estado: empleado.estado})"
             >
-                {{ estadoCliente ? 'Si' : 'No' }}
+                {{ estadoEmpleado ? 'Plantilla' : 'ETT' }}
             </button>
         </td>
         <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
-            <p class="font-medium text-gray-900">{{ cliente.email }}</p>
+            <p class="font-medium text-gray-900">{{ empleado.email }}</p>
         </td>
         <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
-            <p class="font-medium text-gray-900">{{ cliente.address }}</p>
+            <p class="font-medium text-gray-900">{{ empleado.address }}</p>
         </td>
         <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
-            <p class="font-medium text-gray-900">{{ cliente.city }}</p>
+            <p class="font-medium text-gray-900">{{ empleado.city }}</p>
         </td>
         <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
-            <p class="font-medium text-gray-900">{{ cliente.postalCode }}</p>
+            <p class="font-medium text-gray-900">{{ empleado.postalCode }}</p>
         </td>
         <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
             <RouterLink 
-                :to="{ name: 'editar-cliente', params: { customerId: cliente.customerId } }"
+                :to="{ name: 'editar-empleado', params: { employeeId: empleado.employeeId } }"
                 class="text-indigo-600 hover:text-indigo-900 mr-5"
                 >Editar</RouterLink>
                 
                 <button
                     class="text-red-600 hover:text-red-900"
-                    @click="$emit('eliminar-cliente', cliente.customerId)"
+                    @click="$emit('eliminar-empleado', empleado.employeeId)"
                 >
                     Eliminar
                 </button>

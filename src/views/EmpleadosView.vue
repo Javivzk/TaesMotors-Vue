@@ -1,19 +1,19 @@
 
 <script setup>
     import { onMounted, ref, computed } from 'vue'
-    import ClienteService from '../services/ClienteService';
+    import EmpleadoService from '../services/EmpleadoService';
     import RouterLink from '../components/UI/RouterLink.vue';
     import Heading from '../components/UI/Heading.vue';
-    import Cliente from '../components/Cliente.vue';
+    import Empleado from '../components/Empleado.vue';
     import Header from '../components/UI/Header.vue';
 
 
 
-    const clientes = ref([])
+    const empleados = ref([])
 
     onMounted(() => {
-        ClienteService.getCustomers()
-            .then(({data}) => clientes.value = data)
+        EmpleadoService.getEmployees()
+            .then(({data}) => empleados.value = data)
             .catch(error => console.log('Hubo un error'))
     })
 
@@ -24,23 +24,23 @@
         }
     })
 
-    const existenClientes = computed(() => {
-        return clientes.value.length > 0
+    const existenEmpleados = computed(() => {
+        return empleados.value.length > 0
     })
 
-    const actualizarEstado = ({customerId, clubMember}) => {
-        ClienteService.updateEstado(customerId, {clubMember: !clubMember})
+    const actualizarEstado = ({employeeId, estado}) => {
+        EmpleadoService.updateEstado(employeeId, {estado: !estado})
             .then(() => {
-                const i = clientes.value.findIndex(cliente => cliente.customerId === customerId)
-                clientes.value[i].clubMember = !clubMember
+                const i = empleados.value.findIndex(empleado => empleado.employeeId === employeeId)
+                empleados.value[i].estado = !estado
             })
             .catch(error => console.log(error))
     }
 
-    const eliminarCliente = customerId => {
-        ClienteService.deleteClient(customerId)
+    const eliminarEmpleado = employeeId => {
+        EmpleadoService.deleteEmployee(employeeId)
             .then(() => {
-                clientes.value = clientes.value.filter(cliente => cliente.customerId !== customerId)
+                empleados.value = empleados.value.filter(empleado => empleado.employeeId !== employeeId)
             })
             .catch(error => console.log(error))
     }       
@@ -52,13 +52,13 @@
 
         <div class="flex justify-end">
             <RouterLink  to="agregar-cliente">
-                Agregar Cliente
+                Agregar Empleado
             </RouterLink>
         </div>
 
 
 
-        <div v-if="existenClientes" class="flow-root mx-auto  mt-10 p-5 bg-white shadow">
+        <div v-if="existenEmpleados" class="flow-root mx-auto  mt-10 p-5 bg-white shadow">
             <div class="-my-2 -mx-4 overflow-x-auto sm:-mx-6 lg:-mx-8">
                 <div class="min-w-full py-2 align-middle sm:px-6 lg:px-8">
                     <table class="min-w-full divide-y divide-gray-300">
@@ -67,7 +67,7 @@
                             <th scope="col" class="p-2 text-left text-sm font-extrabold text-gray-600">Nombre</th>
                             <th scope="col" class="p-2 text-left text-sm font-extrabold text-gray-600">Apellidos</th>
                             <th scope="col" class="p-2 text-left text-sm font-extrabold text-gray-600">Telefono</th>
-                            <th scope="col" class="p-2 text-left text-sm font-extrabold text-gray-600">CLUB</th>
+                            <th scope="col" class="p-2 text-left text-sm font-extrabold text-gray-600">Estado</th>
                             <th scope="col" class="p-2 text-left text-sm font-extrabold text-gray-600">Email</th>
                             <th scope="col" class="p-2 text-left text-sm font-extrabold text-gray-600">Direccion</th>
                             <th scope="col" class="p-2 text-left text-sm font-extrabold text-gray-600">Ciudad</th>
@@ -76,12 +76,12 @@
                         </tr>
                         </thead>
                         <tbody class="divide-y divide-gray-200 bg-white">
-                            <Cliente
-                                v-for="cliente in clientes"
-                                :key="cliente.customerId"
-                                :cliente="cliente"
+                            <Empleado
+                                v-for="empleado in empleados"
+                                :key="empleado.employeeId"
+                                :empleado="empleado"
                                 @actualizar-estado="actualizarEstado"
-                                @eliminar-cliente="eliminarCliente"
+                                @eliminar-empleado="eliminarEmpleado"
                             />
 
                         </tbody>
@@ -89,6 +89,6 @@
                 </div>
             </div>
         </div>
-        <p v-else class="text-center mt-10">No hay clientes</p>
+        <p v-else class="text-center mt-10">No hay empleados</p>
     </div>
 </template>
