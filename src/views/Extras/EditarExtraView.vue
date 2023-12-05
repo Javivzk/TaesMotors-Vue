@@ -2,20 +2,20 @@
     import { onMounted, reactive } from 'vue'
     import {FormKit} from '@formkit/vue'
     import{ useRouter, useRoute } from 'vue-router'
-    import CocheService from '../services/CocheService'
-    import RouterLink from '../components/UI/RouterLink.vue'
-    import Heading from '../components/UI/Heading.vue'
+    import ExtraService from '../../services/ExtraService'
+    import RouterLink from '../../components/UI/RouterLink.vue'
+    import Heading from '../../components/UI/Heading.vue'
 
 
     const router = useRouter()
     const route = useRoute()
 
-    const { carId } = route.params
+    const { extraId } = route.params
 
     const formData = reactive ({})
 
     onMounted(() => {
-        CocheService.getCar(carId)
+        ExtraService.getExtra(extraId)
             .then(({data}) => {
                 Object.assign(formData,data)
             })
@@ -30,8 +30,8 @@
 
 
     const handleSubmit = (data) => {
-        CocheService.updateCar(carId, data)
-            .then(() => router.push({name: 'listado-coches'}))
+        ExtraService.updateExtra(extraId, data)
+            .then(() => router.push({name: 'listado-extras'}))
             .catch(error => console.log(error))
         }
 </script>
@@ -40,7 +40,7 @@
     <div>
         <div class="flex justify-end">
             <RouterLink  
-                to="listado-coches"
+                to="listado-extras"
             >
                 Volver
             </RouterLink>
@@ -59,63 +59,42 @@
             >
                 <FormKit
                 type="text"
-                label="Marca"
-                name="brand"
-                placeholder="Marca del Coche"
+                label="Nombre"
+                name="name"
+                placeholder="ID del Cliente"
                 prefix-icon="add"
                 validation="required"
-                :validation-messages="{required:'La marca del Coche es obligatoria'}"
-                v-model="formData.brand"
+                :validation-messages="{required:'El nombre del Cliente es obligatorio'}"
+                v-model="formData.name"
                 />
 
                 <FormKit
                 type="text"
-                label="Modelo"
-                name="model"
-                placeholder="Modelo del Coche"
+                label="Descripcion"
+                name="description"
+                placeholder="ID del Coche"
                 prefix-icon="add"
                 validation="required"
-                :validation-messages="{required:'El modelo del Coche es obligatorio'}"
-                v-model="formData.model"
+                :validation-messages="{required:'Los Apellidos del Cliente son obligatorios'}"
+                v-model="formData.description"
                 />
 
                 
                 <FormKit
                 type="text"
-                label="Motor"
-                name="motor"
+                label="Precio"
+                name="price"
                 prefix-icon="telephone"
-                help="Coloca el Motor del Coche que deseas registrar"
-                v-model="formData.motor"
-                />
-
-                <FormKit
-                type="text"
-                label="Combustible"
-                name="combustible"
-                placeholder="Combustible del Coche"
-                prefix-icon="add"
-                validation="required"
-                :validation-messages="{required:'El combustible del Coche es obligatorio'}"
-                v-model="formData.combustible"
-                />
-
-                <FormKit
-                type="text"
-                label="Color"
-                name="color"
-                placeholder="Color del Coche"
-                prefix-icon="add"
-                validation="required"
-                :validation-messages="{required:'El color del Coche es obligatorio'}"
-                v-model="formData.color"
+                help="Coloca el Telefono del Cliente que deseas registrar"
+                :validation-messages="{ matches: 'El formato no es valido' }"
+                v-model="formData.price"
                 />
 
                 <FormKit
                 type="text"
                 label="Stock"
                 name="stock"
-                placeholder="Stock de Cliente"
+                placeholder="Estado del Pedido"
                 help="Coloca el Nombre del Cliente que deseas registrar"
                 :validation-messages="{required:'El Email del Cliente es obligatorio', email: 'Coloca un email valido'}"
                 v-model="formData.stock"

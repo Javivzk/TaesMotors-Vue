@@ -2,9 +2,9 @@
     import { onMounted, reactive } from 'vue'
     import {FormKit} from '@formkit/vue'
     import{ useRouter, useRoute } from 'vue-router'
-    import PedidoService from '../services/PedidoService'
-    import RouterLink from '../components/UI/RouterLink.vue'
-    import Heading from '../components/UI/Heading.vue'
+    import PedidoService from '../../services/PedidoService'
+    import RouterLink from '../../components/UI/RouterLink.vue'
+    import Heading from '../../components/UI/Heading.vue'
 
 
     const router = useRouter()

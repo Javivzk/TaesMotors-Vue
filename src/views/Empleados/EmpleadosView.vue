@@ -1,11 +1,11 @@
 
 <script setup>
     import { onMounted, ref, computed } from 'vue'
-    import EmpleadoService from '../services/EmpleadoService';
-    import RouterLink from '../components/UI/RouterLink.vue';
-    import Heading from '../components/UI/Heading.vue';
-    import Empleado from '../components/Empleado.vue';
-    import Header from '../components/UI/Header.vue';
+    import EmpleadoService from '../../services/EmpleadoService';
+    import RouterLink from '../../components/UI/RouterLink.vue';
+    import Heading from '../../components/UI/Heading.vue';
+    import Empleado from '../../components/Empleado.vue';
+    import Header from '../../components/UI/Header.vue';
 
 
 

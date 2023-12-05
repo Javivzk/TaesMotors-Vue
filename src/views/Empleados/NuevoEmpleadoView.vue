@@ -3,9 +3,9 @@
 
     import {FormKit} from '@formkit/vue'
     import{ useRouter } from 'vue-router'
-    import EmpleadoService from '../services/EmpleadoService'
-    import RouterLink from '../components/UI/RouterLink.vue'
-    import Heading from '../components/UI/Heading.vue'
+    import EmpleadoService from '../../services/EmpleadoService'
+    import RouterLink from '../../components/UI/RouterLink.vue'
+    import Heading from '../../components/UI/Heading.vue'
 
 
     const router = useRouter()
