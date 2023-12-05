@@ -18,5 +18,8 @@ export default {
     },
     deleteCar(carId) {
         return api.delete('/cars/' + carId)
+    },
+    buscarCoches({marca, modelo}) {
+        return api(`/cars?brand=${marca}&model=${modelo}`)
     }
 }

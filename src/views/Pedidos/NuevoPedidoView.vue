@@ -1,9 +1,9 @@
 <script setup>
 import { FormKit } from '@formkit/vue';
 import { useRouter } from 'vue-router';
-import PedidoService from '../services/PedidoService';
-import RouterLink from '../components/UI/RouterLink.vue';
-import Heading from '../components/UI/Heading.vue';
+import PedidoService from '../../services/PedidoService';
+import RouterLink from '../../components/UI/RouterLink.vue';
+import Heading from '../../components/UI/Heading.vue';
 
 const router = useRouter();
 
@@ -15,10 +15,13 @@ defineProps({
 
 const handleSubmit = (data) => {
   // Asegúrate de que los datos estén correctamente estructurados
-  if (data.carId && data.customerId && data.extraId) {
+  if (data.carId && data.customerId && data.extraId && data.employeeId) {
     const orderData = {
       customer: {
         customerId: data.customerId,
+      },
+      employee: {
+        employeeId: data.employeeId,
       },
       car: {
         carId: data.carId,
@@ -66,6 +69,16 @@ const handleSubmit = (data) => {
       />
 
       <FormKit
+      type="number"
+      label="ID EMPLEADO"
+      name="employeeId"
+      placeholder="ID del Empleado"
+      prefix-icon="add"
+      validation="required"
+      :validation-messages="{ required: 'El ID del Empleado es obligatorio' }"
+    />
+
+      <FormKit
         type="number"
         label="ID CUSTOMER"
         name="customerId"
@@ -82,6 +95,7 @@ const handleSubmit = (data) => {
         placeholder="Extra añadido al Coche"
         help="Coloca el Extra que deseas registrar"
         :validation-messages="{ required: 'El Extra del Coche es obligatorio' }"
+      
       />
     </FormKit>
   </div>

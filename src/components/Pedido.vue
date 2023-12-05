@@ -27,6 +27,9 @@
             <p class="font-medium text-gray-900">{{ pedido.customer.name + "\n" + pedido.customer.lastName}}</p>
         </td>
         <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
+            <p class="font-medium text-gray-900">{{ pedido.employee.name + "\n" + pedido.employee.lastName}}</p>
+        </td>
+        <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
             <p class="font-medium text-gray-900">{{ pedido.car.brand }}</p>
         </td>
         <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">

@@ -1,17 +1,12 @@
 <script setup>
     import { RouterView } from 'vue-router'
+    import Header from './components/UI/Header.vue'
 </script>
 
 <template>
-    <header class="bg-slate-800">
-        <div class="mx-auto max-w-6xl py-10">
-            <h1 class="text-4xl font-extrabold text-white">
-                Administrador de TAES MOTORS
-            </h1>
-        </div>
-    </header>
+    <Header />
 
-    <main class="max-w-6xl mx-auto mt-10">
+    <main class="container mx-auto mt-10">
         <RouterView />
     </main>
 </template>

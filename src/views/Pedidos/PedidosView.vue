@@ -1,10 +1,10 @@
 
 <script setup>
     import { onMounted, ref, computed } from 'vue'
-    import PedidoService from '../services/PedidoService';
-    import RouterLink from '../components/UI/RouterLink.vue';
-    import Heading from '../components/UI/Heading.vue';
-    import Pedido from '../components/Pedido.vue';
+    import PedidoService from '../../services/PedidoService';
+    import RouterLink from '../../components/UI/RouterLink.vue';
+    import Heading from '../../components/UI/Heading.vue';
+    import Pedido from '../../components/Pedido.vue';
 
 
     const pedidos = ref([])
@@ -62,6 +62,7 @@
                         <thead>
                         <tr>
                             <th scope="col" class="p-2 text-left text-sm font-extrabold text-gray-600">ID CLIENTE</th>
+                            <th scope="col" class="p-2 text-left text-sm font-extrabold text-gray-600">ID EMPLEADO</th>
                             <th scope="col" class="p-2 text-left text-sm font-extrabold text-gray-600">MARCA DE COCHE</th>
                             <th scope="col" class="p-2 text-left text-sm font-extrabold text-gray-600">MODELO DE COCHE</th>
                             <th scope="col" class="p-2 text-left text-sm font-extrabold text-gray-600">PRECIO TOTAL</th>

@@ -1,14 +1,26 @@
-
 <script setup>
-
+    import { onMounted, reactive } from 'vue'
     import {FormKit} from '@formkit/vue'
-    import{ useRouter } from 'vue-router'
-    import CocheService from '../services/CocheService'
-    import RouterLink from '../components/UI/RouterLink.vue'
-    import Heading from '../components/UI/Heading.vue'
+    import{ useRouter, useRoute } from 'vue-router'
+    import CocheService from '../../services/CocheService'
+    import RouterLink from '../../components/UI/RouterLink.vue'
+    import Heading from '../../components/UI/Heading.vue'
 
 
     const router = useRouter()
+    const route = useRoute()
+
+    const { carId } = route.params
+
+    const formData = reactive ({})
+
+    onMounted(() => {
+        CocheService.getCar(carId)
+            .then(({data}) => {
+                Object.assign(formData,data)
+            })
+            .catch(error => console.log(error))
+    })
 
     defineProps({
         titulo: {
@@ -18,12 +30,8 @@
 
 
     const handleSubmit = (data) => {
-        data.estado = false
-        CocheService.postCar(data)
-            .then(respuesta =>{
-                console.log(respuesta)
-                router.push({name: 'listado-coches'})
-            })
+        CocheService.updateCar(carId, data)
+            .then(() => router.push({name: 'listado-coches'}))
             .catch(error => console.log(error))
         }
 </script>
@@ -44,9 +52,10 @@
             <div class="mx-auto md:w-2/3 py20 px-6">
             <FormKit
                 type="form"
-                submit-label="Agregar Coche"
+                submit-label="Guardar cambios"
                 incomplete-message="No se pudo enviar, revisa los campos"
                 @submit="handleSubmit"
+                :value="formData"
             >
                 <FormKit
                 type="text"
@@ -56,6 +65,7 @@
                 prefix-icon="add"
                 validation="required"
                 :validation-messages="{required:'La marca del Coche es obligatoria'}"
+                v-model="formData.brand"
                 />
 
                 <FormKit
@@ -66,15 +76,7 @@
                 prefix-icon="add"
                 validation="required"
                 :validation-messages="{required:'El modelo del Coche es obligatorio'}"
-                />
-
-                <FormKit
-                type="text"
-                label="Estado"
-                name="estado"
-                placeholder="Estado del Coche"
-                help="Coloca el Nombre del Coche que deseas registrar"
-                :validation-messages="{required:'El Email del Cliente es obligatorio', email: 'Coloca un email valido'}"
+                v-model="formData.model"
                 />
 
                 
@@ -84,6 +86,7 @@
                 name="motor"
                 prefix-icon="telephone"
                 help="Coloca el Motor del Coche que deseas registrar"
+                v-model="formData.motor"
                 />
 
                 <FormKit
@@ -93,7 +96,8 @@
                 placeholder="Combustible del Coche"
                 prefix-icon="add"
                 validation="required"
-                :validation-messages="{required:'El Combustible del Coche es obligatorio'}"
+                :validation-messages="{required:'El combustible del Coche es obligatorio'}"
+                v-model="formData.combustible"
                 />
 
                 <FormKit
@@ -103,9 +107,19 @@
                 placeholder="Color del Coche"
                 prefix-icon="add"
                 validation="required"
-                :validation-messages="{required:'El Color del Coche es obligatorio'}"
+                :validation-messages="{required:'El color del Coche es obligatorio'}"
+                v-model="formData.color"
                 />
 
+                <FormKit
+                type="text"
+                label="Stock"
+                name="stock"
+                placeholder="Stock de Cliente"
+                help="Coloca el Nombre del Cliente que deseas registrar"
+                :validation-messages="{required:'El Email del Cliente es obligatorio', email: 'Coloca un email valido'}"
+                v-model="formData.stock"
+                />
 
             </FormKit>
             </div>
