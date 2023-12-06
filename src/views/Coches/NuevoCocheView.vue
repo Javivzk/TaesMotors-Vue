@@ -5,7 +5,6 @@
     import{ useRouter } from 'vue-router'
     import CocheService from '../../services/CocheService'
     import RouterLink from '../../components/UI/RouterLink.vue'
-    import Heading from '../../components/UI/Heading.vue'
 
 
     const router = useRouter()
@@ -38,7 +37,6 @@
             </RouterLink>
         </div>
 
-        <Heading>{{ titulo }}</Heading>
 
         <div class="mx-auto mt-10 bg-white shadow">
             <div class="mx-auto md:w-2/3 py20 px-6">

@@ -50,9 +50,7 @@
         <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
             <p class="font-medium text-gray-900">{{ cliente.city }}</p>
         </td>
-        <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
-            <p class="font-medium text-gray-900">{{ cliente.postalCode }}</p>
-        </td>
+
         <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
             <RouterLink 
                 :to="{ name: 'editar-cliente', params: { customerId: cliente.customerId } }"

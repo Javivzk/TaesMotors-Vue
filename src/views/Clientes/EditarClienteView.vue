@@ -2,9 +2,8 @@
     import { onMounted, reactive } from 'vue'
     import {FormKit} from '@formkit/vue'
     import{ useRouter, useRoute } from 'vue-router'
-    import ClienteService from '../services/ClienteService'
-    import RouterLink from '../components/UI/RouterLink.vue'
-    import Heading from '../components/UI/Heading.vue'
+    import ClienteService from '../../services/ClienteService'
+    import RouterLink from '../../components/UI/RouterLink.vue'
 
 
     const router = useRouter()
@@ -45,8 +44,6 @@
                 Volver
             </RouterLink>
         </div>
-
-        <Heading>{{ titulo }}</Heading>
 
         <div class="mx-auto mt-10 bg-white shadow">
             <div class="mx-auto md:w-2/3 py20 px-6">

@@ -3,9 +3,7 @@
     import { onMounted, ref, computed } from 'vue'
     import ClienteService from '../../services/ClienteService';
     import RouterLink from '../../components/UI/RouterLink.vue';
-    import Heading from '../../components/UI/Heading.vue';
     import Cliente from '../../components/Cliente.vue';
-    import Header from '../../components/UI/Header.vue';
 
 
 
@@ -48,7 +46,7 @@
 
 <template>
     <div>
-        <Heading>{{ titulo }}</Heading>
+        <h1 class="text-4xl font-extrabold text-slate-500">Clientes</h1>
 
         <div class="flex justify-end">
             <RouterLink  to="agregar-cliente">
@@ -71,7 +69,6 @@
                             <th scope="col" class="p-2 text-left text-sm font-extrabold text-gray-600">Email</th>
                             <th scope="col" class="p-2 text-left text-sm font-extrabold text-gray-600">Direccion</th>
                             <th scope="col" class="p-2 text-left text-sm font-extrabold text-gray-600">Ciudad</th>
-                            <th scope="col" class="p-2 text-left text-sm font-extrabold text-gray-600">Codigo Postal</th>
                             <th scope="col" class="p-2 text-left text-sm font-extrabold text-gray-600">Acciones</th>
                         </tr>
                         </thead>
