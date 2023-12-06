@@ -3,7 +3,6 @@
     import { onMounted, ref, computed } from 'vue'
     import CocheService from '../../services/CocheService';
     import RouterLink from '../../components/UI/RouterLink.vue';
-    import Heading from '../../components/UI/Heading.vue';
     import Coche from '../../components/Coche.vue';
 
 
@@ -46,13 +45,13 @@
 
 <template>
     <div>
+        <h1 class="text-4xl font-extrabold text-slate-500">Coches</h1>
+
         <div class="flex justify-end">
             <RouterLink  to="agregar-coche">
                 Agregar Coche
             </RouterLink>
         </div>
-
-        <Heading>{{ titulo }}</Heading>
 
         <div v-if="existenCoches" class="flow-root mx-auto  mt-10 p-5 bg-white shadow">
             <div class="-my-2 -mx-4 overflow-x-auto sm:-mx-6 lg:-mx-8">

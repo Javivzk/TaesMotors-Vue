@@ -3,9 +3,7 @@
     import { onMounted, ref, computed } from 'vue'
     import EmpleadoService from '../../services/EmpleadoService';
     import RouterLink from '../../components/UI/RouterLink.vue';
-    import Heading from '../../components/UI/Heading.vue';
     import Empleado from '../../components/Empleado.vue';
-    import Header from '../../components/UI/Header.vue';
 
 
 
@@ -48,7 +46,7 @@
 
 <template>
     <div>
-        <Heading>{{ titulo }}</Heading>
+        <h1 class="text-4xl font-extrabold text-slate-500">Empleados</h1>
 
         <div class="flex justify-end">
             <RouterLink  to="agregar-cliente">

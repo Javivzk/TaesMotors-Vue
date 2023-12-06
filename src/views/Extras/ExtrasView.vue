@@ -3,7 +3,6 @@
     import { onMounted, ref, computed } from 'vue'
     import ExtraService from '../../services/ExtraService';
     import RouterLink from '../../components/UI/RouterLink.vue';
-    import Heading from '../../components/UI/Heading.vue';
     import Extra from '../../components/Extra.vue';
 
 
@@ -46,14 +45,14 @@
 
 <template>
     <div>
-        
+        <h1 class="text-4xl font-extrabold text-slate-500">Extras</h1>
+
         <div class="flex justify-end">
             <RouterLink  to="agregar-extra">
                 Agregar Extra
             </RouterLink>
         </div>
 
-        <Heading>{{ titulo }}</Heading>
 
         <div v-if="existenExtras" class="flow-root mx-auto  mt-10 p-5 bg-white shadow">
             <div class="-my-2 -mx-4 overflow-x-auto sm:-mx-6 lg:-mx-8">

@@ -3,7 +3,6 @@ import { FormKit } from '@formkit/vue';
 import { useRouter } from 'vue-router';
 import PedidoService from '../../services/PedidoService';
 import RouterLink from '../../components/UI/RouterLink.vue';
-import Heading from '../../components/UI/Heading.vue';
 
 const router = useRouter();
 
@@ -48,6 +47,13 @@ const handleSubmit = (data) => {
 
 <template>
   <div>
+    <div class="flex justify-end">
+      <RouterLink  
+          to="listado-pedidos"
+      >
+          Volver
+      </RouterLink>
+  </div>
     <!-- ... tu código existente ... -->
     <FormKit
       type="form"

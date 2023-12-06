@@ -40,7 +40,7 @@
                 @click="$emit('actualizar-estado',
                  {extraId: extra.extraId, stock: extra.stock})"
             >
-                {{ estadoExtra ? 'Pagado' : 'Sin Pagar' }}
+                {{ estadoExtra ? 'En Stock' : 'Fuera de Stock' }}
             </button>
         </td>
         <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">

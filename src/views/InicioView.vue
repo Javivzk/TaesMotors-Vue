@@ -1,3 +1,7 @@
+<script setup>
+
+</script>
+
 <template>
   <div class="container mx-auto mt-10 text-center">
     <h1 class="text-4xl font-bold mb-6">Bienvenido a TAESMOTORS</h1>
@@ -33,19 +37,19 @@
     <div class="flex flex-row items-center justify-center">
 
       <div class="mr-4">
-        <router-link to="/buscar-clientes">
+        <router-link to="/listado-coches">
           <img class="w-auto h-auto max-w-xs object-scale-down hover:opacity-75 transition-opacity duration-200" src="src\assets\images\mazda\3\mazda3.jpg" alt="Mazda 3">
         </router-link>
       </div>
       
       <div class="mr-4">
-        <router-link to="/buscar-clientes">
+        <router-link to="/listado-coches">
           <img class="w-auto h-auto max-w-xs object-scale-down hover:opacity-75 transition-opacity duration-200" src="src\assets\images\mazda\cx5\mazdacx5.jpg" alt="Mazda CX5">
         </router-link>
       </div>
 
       <div class="mr-4">
-        <router-link to="/buscar-clientes">
+        <router-link to="/listado-coches">
           <img class="w-auto h-auto max-w-xs object-scale-down hover:opacity-75 transition-opacity duration-200" src="src\assets\images\mazda\mx5\mazdamx5.jpg" alt="Mazda MX5">
         </router-link>
       </div>
@@ -56,11 +60,7 @@
   </div>
 </template>
   
-  <script>
-  export default {
-    name: 'Inicio',
-  }
-  </script>
+
   
   <style scoped>
   /* No necesitas agregar estilos aquí para Tailwind CSS */

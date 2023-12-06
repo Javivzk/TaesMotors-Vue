@@ -1,10 +1,5 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import listadoClientes from '../views/Clientes/ClientesView.vue'
-import listadoPedidos from '../views/Pedidos/PedidosView.vue'
-import listadoCoches from '../views/Coches/CochesView.vue'
-import listadoEmpleados from '../views/Empleados/EmpleadosView.vue'
-import leon from '../views/Coches/Modelos/LeonView.vue'
-import Inicio from '../views/Inicio.vue'
+import InicioView from '../views/InicioView.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -12,73 +7,61 @@ const router = createRouter({
     {
       path: '/',
       name: 'inicio',
-      component: Inicio,
+      component: InicioView,
       props: { titulo: 'Index CRM' }
     },
     {
       path: '/leon',
       name: 'leon',
       component: () => import('../views/Coches/Modelos/LeonView.vue'),
-      props: { titulo: 'Index CRM' }
+      props: { titulo: 'Seat Leon' }
     },
     {
       path: '/ibiza',
       name: 'ibiza',
       component: () => import('../views/Coches/Modelos/IbizaView.vue'),
-      props: { titulo: 'Index CRM' }
+      props: { titulo: 'Seat Ibiza' }
     },
     {
       path: '/arona',
       name: 'arona',
       component: () => import('../views/Coches/Modelos/AronaView.vue'),
-      props: { titulo: 'Index CRM' }
-    },
-    {
-      path: '/favoritos',
-      name: 'favoritos',
-      component: () => import('../views/FavoritosView.vue'),
-      props: { titulo: 'Index CRM' }
+      props: { titulo: 'Seat Arona' }
     },
     {
       path: '/busqueda',
       name: 'busqueda',
       component: () => import('../views/BusquedaView.vue'),
-      props: { titulo: 'Index CRM' }
-    },
-    {
-      path: '/buscar-clientes',
-      name: 'buscar-clientes',
-      component: import('../views/Clientes/BuscarClientesView.vue'),
-      props: { titulo: 'Busqueda de clientes'}
+      props: { titulo: 'Busqueda' }
     },
     {
       path: '/listado-clientes',
       name: 'listado-clientes',
-      component: import('../views/Clientes/ClientesView.vue'),
+      component: () =>import('../views/Clientes/ClientesView.vue'),
       props: { titulo: 'Listado de Clientes' }
     },
     {
       path: '/listado-empleados',
       name: 'listado-empleados',
-      component: import('../views/Empleados/EmpleadosView.vue'),
+      component: () => import('../views/Empleados/EmpleadosView.vue'),
       props: { titulo: 'Listado de Empleados' }
     },
     {
       path: '/listado-coches',
       name: 'listado-coches',
-      component: import('../views/Coches/CochesView.vue'),
+      component:() => import('../views/Coches/CochesView.vue'),
       props: { titulo: 'Listado de Coches' }
     },
     {
       path: '/listado-pedidos',
       name: 'listado-pedidos',
-      component: import('../views/Pedidos/PedidosView.vue'),
+      component:() => import('../views/Pedidos/PedidosView.vue'),
       props: { titulo: 'Listado de Pedidos' }
     },
     {
       path: '/listado-extras',
       name: 'listado-extras',
-      component: import('../views/Extras/ExtrasView.vue'),
+      component:() => import('../views/Extras/ExtrasView.vue'),
       props: { titulo: 'Listado de extras' }
     },
     {
