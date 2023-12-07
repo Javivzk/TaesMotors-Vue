@@ -124,6 +124,26 @@ const router = createRouter({
       component: () => import('../views/Extras/EditarExtraView.vue'),
       props: { titulo: 'Editar Extra' }
     },
+    {
+      path: '/auth',
+      name: 'login',
+      component: () => import('../views/Auth/AuthLayout.vue'),
+      props: { titulo: 'Editar Extra' },
+      children: [
+        {
+          path: '/login',
+          name: 'login',
+          component: () => import('../views/Auth/LoginView.vue'),
+          props: { titulo: 'Login' }
+        },
+        {
+          path: 'register',
+          name: 'register',
+          component: () => import('../views/Auth/RegisterView.vue'),
+          props: { titulo: 'Register' }
+        },
+      ]
+    },
   ]
 })
 

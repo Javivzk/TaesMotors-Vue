@@ -15,6 +15,7 @@ export const useCochesStore = defineStore('cochesStore', () => {
   })
 
   const coches = ref([])
+  const coche = ref({})
 
 
   onMounted(async () => {
@@ -29,16 +30,17 @@ export const useCochesStore = defineStore('cochesStore', () => {
 
   async function seleccionarCoche(carId) {
     const data = await CocheService.getCar(carId)
-    console.log(data)
-
+    coche.value = data.data
     modal.handleClickModal()
   }
 
   return {
     modelos,
     busqueda,
-    obtenerCoches,
+    coche,
     coches,
+    obtenerCoches,
     seleccionarCoche
+
   }
 })
