@@ -2,8 +2,11 @@
 <script setup>
     import { Dialog, DialogPanel, DialogTitle, TransitionChild, TransitionRoot } from '@headlessui/vue'
     import { useModalStore } from '../stores/modal'; 
+    import { useCochesStore } from '../stores/coches';
 
     const modal = useModalStore()
+    const coches = useCochesStore()
+
 </script>
 
 <template>
@@ -18,6 +21,33 @@
               <DialogPanel class="relative transform overflow-hidden rounded-lg bg-white px-4 pt-5 pb-4 text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-2xl sm:p-6" >
                 <div>
                   <div class="mt-3">
+                    <DialogTitle as="h3" class="text-gray-900 text-4xl font-extrabold my-5">
+                      {{ coches.coche.model }}  
+                    </DialogTitle>
+                    <img
+                      :src="coches.coche.image"
+                    />
+
+                    <DialogTitle as="h3" class="text-gray-900 text-4xl font-extrabold my-5">
+                      Especificaciones del coche
+                    </DialogTitle>
+
+                    <p class="text-lg text-gray-500">Año: {{coches.coche.year}} </p>
+                    <p class="text-lg text-gray-500">Cilindrada: {{coches.coche.motor}} </p>
+                    <p class="text-lg text-gray-500">Combustible: {{coches.coche.fuel}} </p>
+                    <p class="text-lg text-gray-500">Color: {{coches.coche.color}} </p>
+                    <p class="text-lg text-gray-500">Disponibilidad: {{coches.coche.stock}} </p>
+                  
+
+
+                    <DialogTitle as="h3" class="text-gray-900 text-4xl font-extrabold my-5">
+                      Precio del coche
+                    </DialogTitle>
+
+                    <p class="text-lg text-gray-500">Precio base: {{coches.coche.basePrice}}€</p>
+                    <p class="text-lg text-gray-500">IVA: {{coches.coche.basePrice * 0.21}}€</p>
+                    <p class="text-lg text-gray-500">Precio final: {{coches.coche.basePrice * 1.21}}€</p>
+                    <p class="text-lg text-gray-500">*Precio calculado sin ningun extra</p>
 
 
 
