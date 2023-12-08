@@ -1,5 +1,7 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import InicioView from '../views/InicioView.vue'
+import Login from '@/components/Login.vue';
+import Register from '@/components/Register.vue';
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -8,143 +10,207 @@ const router = createRouter({
       path: '/',
       name: 'inicio',
       component: InicioView,
-      props: { titulo: 'Index CRM' }
+      props: { titulo: 'Index CRM' },
+      meta: {
+        requiresAuth: true,
+      },
+    },
+    {
+      path: '/login',
+      name: 'login',
+      component: Login,
+    },
+    {
+      path: '/register',
+      name: 'register',
+      component: Register,
     },
     {
       path: '/leon',
       name: 'leon',
       component: () => import('../views/Coches/Modelos/LeonView.vue'),
-      props: { titulo: 'Seat Leon' }
+      props: { titulo: 'Seat Leon' },
+      meta: {
+        requiresAuth: true,
+      },
     },
     {
       path: '/ibiza',
       name: 'ibiza',
       component: () => import('../views/Coches/Modelos/IbizaView.vue'),
-      props: { titulo: 'Seat Ibiza' }
+      props: { titulo: 'Seat Ibiza' },
+      meta: {
+        requiresAuth: true,
+      },
     },
     {
       path: '/arona',
       name: 'arona',
       component: () => import('../views/Coches/Modelos/AronaView.vue'),
-      props: { titulo: 'Seat Arona' }
+      props: { titulo: 'Seat Arona' },
+      meta: {
+        requiresAuth: true,
+      },
     },
     {
       path: '/busqueda',
       name: 'busqueda',
       component: () => import('../views/BusquedaView.vue'),
-      props: { titulo: 'Busqueda' }
+      props: { titulo: 'Busqueda' },
+      meta: {
+        requiresAuth: true,
+      },
     },
     {
       path: '/listado-clientes',
       name: 'listado-clientes',
       component: () =>import('../views/Clientes/ClientesView.vue'),
-      props: { titulo: 'Listado de Clientes' }
+      props: { titulo: 'Listado de Clientes' },
+      meta: {
+        requiresAuth: true,
+      },
     },
     {
       path: '/listado-empleados',
       name: 'listado-empleados',
       component: () => import('../views/Empleados/EmpleadosView.vue'),
-      props: { titulo: 'Listado de Empleados' }
+      props: { titulo: 'Listado de Empleados' },
+      meta: {
+        requiresAuth: true,
+      },
     },
     {
       path: '/listado-coches',
       name: 'listado-coches',
       component:() => import('../views/Coches/CochesView.vue'),
-      props: { titulo: 'Listado de Coches' }
+      props: { titulo: 'Listado de Coches' },
+      meta: {
+        requiresAuth: true,
+      },
     },
     {
       path: '/listado-pedidos',
       name: 'listado-pedidos',
       component:() => import('../views/Pedidos/PedidosView.vue'),
-      props: { titulo: 'Listado de Pedidos' }
+      props: { titulo: 'Listado de Pedidos' },
+      meta: {
+        requiresAuth: true,
+      },
     },
     {
       path: '/listado-extras',
       name: 'listado-extras',
       component:() => import('../views/Extras/ExtrasView.vue'),
-      props: { titulo: 'Listado de extras' }
+      props: { titulo: 'Listado de extras' },
+      meta: {
+        requiresAuth: true,
+      },
     },
     {
       path: '/agregar-cliente',
       name: 'agregar-cliente',
       component: () => import('../views/Clientes/NuevoClienteView.vue'),
-      props: { titulo: 'Agregar Clientes' }
+      props: { titulo: 'Agregar Clientes' },
+      meta: {
+        requiresAuth: true,
+      },
     },
     {
       path: '/editar-cliente/:customerId',
       name: 'editar-cliente',
       component: () => import('../views/Clientes/EditarClienteView.vue'),
-      props: { titulo: 'Editar Cliente' }
+      props: { titulo: 'Editar Cliente' },
+      meta: {
+        requiresAuth: true,
+      },
     },
     {
       path: '/agregar-empleado',
       name: 'agregar-empleado',
       component: () => import('../views/Empleados/NuevoEmpleadoView.vue'),
-      props: { titulo: 'Agregar Empleados' }
+      props: { titulo: 'Agregar Empleados' },
+      meta: {
+        requiresAuth: true,
+      },
     },
     {
       path: '/editar-empleado/:employeeId',
       name: 'editar-empleado',
       component: () => import('../views/Empleados/EditarEmpleadoView.vue'),
-      props: { titulo: 'Editar Empleado' }
+      props: { titulo: 'Editar Empleado' },
+      meta: {
+        requiresAuth: true,
+      },
     },
     {
       path: '/agregar-coche',
       name: 'agregar-coche',
       component: () => import('../views/Coches/NuevoCocheView.vue'),
-      props: { titulo: 'Agregar Coches' }
+      props: { titulo: 'Agregar Coches' },
+      meta: {
+        requiresAuth: true,
+      },
     },
     {
       path: '/editar-coche/:carId',
       name: 'editar-coche',
       component: () => import('../views/Coches/EditarCocheView.vue'),
-      props: { titulo: 'Editar Coche' }
+      props: { titulo: 'Editar Coche' },
+      meta: {
+        requiresAuth: true,
+      },
     },
     {
       path: '/agregar-pedido',
       name: 'agregar-pedido',
       component: () => import('../views/Pedidos/NuevoPedidoView.vue'),
-      props: { titulo: 'Agregar Pedido' }
+      props: { titulo: 'Agregar Pedido' },
+      meta: {
+        requiresAuth: true,
+      },
     },
     {
       path: '/editar-pedido/:orderId',
       name: 'editar-pedido',
       component: () => import('../views/Pedidos/EditarPedidoView.vue'),
-      props: { titulo: 'Editar Pedido' }
+      props: { titulo: 'Editar Pedido' },
+      meta: {
+        requiresAuth: true,
+      },
     },
     {
       path: '/agregar-extra',
       name: 'agregar-extra',
       component: () => import('../views/Extras/NuevoExtraView.vue'),
-      props: { titulo: 'Agregar Extra' }
+      props: { titulo: 'Agregar Extra' },
+      meta: {
+        requiresAuth: true,
+      },
     },
     {
       path: '/editar-extra/:extraId',
       name: 'editar-extra',
       component: () => import('../views/Extras/EditarExtraView.vue'),
-      props: { titulo: 'Editar Extra' }
-    },
-    {
-      path: '/auth',
-      name: 'login',
-      component: () => import('../views/Auth/AuthLayout.vue'),
       props: { titulo: 'Editar Extra' },
-      children: [
-        {
-          path: '/login',
-          name: 'login',
-          component: () => import('../views/Auth/LoginView.vue'),
-          props: { titulo: 'Login' }
-        },
-        {
-          path: 'register',
-          name: 'register',
-          component: () => import('../views/Auth/RegisterView.vue'),
-          props: { titulo: 'Register' }
-        },
-      ]
+      meta: {
+        requiresAuth: true,
+      },
     },
+  
   ]
 })
+
+router.beforeEach((to, from, next) => {
+  const requiresAuth = to.matched.some(record => record.meta.requiresAuth);
+  const isAuthenticated = localStorage.getItem('userToken'); // o cómo manejes la autenticación
+  
+  if (!requiresAuth) {
+    next(); // No requiere autenticación, continúa con la navegación
+  } else if (isAuthenticated) {
+    next(); // La ruta requiere autenticación y el usuario está autenticado, continúa con la navegación
+  } else {
+    next('/login'); // Redirige al usuario al login
+  }
+});
 
 export default router

@@ -1,41 +1,42 @@
 <template>
-    <div>
-      <h2>Login</h2>
-      <form class="mx-auto" style="max-width: 25rem;">
-        <h1 class="mb-5 text-center" >Inicio de Sesion</h1>
-        <div class="mb-3">
-            <label for="email">Email</label>
-            <input id="email" type="email" class="w-full px-3 py-2 border border-gray-300 rounded-md" />
-        </div>
-        <div class="mb-3">
-            <label for="password">Password</label>
-            <input id="password" type="password" class="w-full px-3 py-2 border border-gray-300 rounded-md" />
-        </div>
-        <div class="mb-3">
-            <button class="w-full px-3 py-2 text-white bg-indigo-500 rounded-md">Login</button>
-        </div>
-      </form>
-    </div>
-  </template>
-  
-  <script>
-  export default {
-    data() {
-      return {
-        username: '',
-        password: '',
-      };
+  <div>
+    <!-- Formulario de login -->
+    <form @submit.prevent="loginUser">
+      <input v-model="username" placeholder="Username" required>
+      <input type="password" v-model="password" placeholder="Password" required>
+      <button type="submit">Login</button>
+    </form>
+  </div>
+</template>
+
+<script>
+import AuthService from "@/services/AuthService";
+import { useAuthStore } from "@/stores/auth";
+
+export default {
+  data() {
+    return {
+      username: '',
+      password: '',
+    };
+  },
+  methods: {
+    async loginUser() {
+      try {
+        const response = await AuthService.login(this.username, this.password);
+
+        if (response.data.token) {
+          const authStore = useAuthStore();
+          authStore.login(response.data.token); // Almacena el token en el store
+          this.$router.push('/'); // Redirigir a la ruta de inicio
+        } else {
+          console.log('Token no recibido:', response.data);
+        }
+      } catch (error) {
+        console.error('Error en el login:', error);
+        // Manejar errores específicos, como mostrar un mensaje de error en la interfaz de usuario.
+      }
     },
-    methods: {
-      login() {
-        // Aquí puedes implementar la lógica para enviar los datos de inicio de sesión al servidor.
-        console.log('Username:', this.username);
-        console.log('Password:', this.password);
-        
-        // Aquí puedes realizar una solicitud HTTP para autenticar al usuario con el servidor.
-        // Por ejemplo, puedes usar Axios o el método fetch.
-      },
-    },
-  };
-  </script>
-  
+  },
+};
+</script>
