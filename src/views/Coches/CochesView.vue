@@ -4,7 +4,9 @@
     import CocheService from '../../services/CocheService';
     import RouterLink from '../../components/UI/RouterLink.vue';
     import Coche from '../../components/Coche.vue';
-
+    import { useAuthStore } from '@/stores/auth';
+    
+    const authStore = useAuthStore();
 
     const coches = ref([])
 
@@ -52,36 +54,37 @@
                 Agregar Coche
             </RouterLink>
         </div>
+        <div v-if="authStore.isAuthenticated">
+            <div v-if="existenCoches" class="flow-root mx-auto  mt-10 p-5 bg-white shadow">
+                <div class="-my-2 -mx-4 overflow-x-auto sm:-mx-6 lg:-mx-8">
+                    <div class="min-w-full py-2 align-middle sm:px-6 lg:px-8">
+                        <table class="min-w-full divide-y divide-gray-300">
+                            <thead>
+                            <tr>
+                                <th scope="col" class="p-2 text-left text-sm font-extrabold text-gray-600">Marca</th>
+                                <th scope="col" class="p-2 text-left text-sm font-extrabold text-gray-600">Modelo</th>
+                                <th scope="col" class="p-2 text-left text-sm font-extrabold text-gray-600">Motor</th>
+                                <th scope="col" class="p-2 text-left text-sm font-extrabold text-gray-600">Fuel</th>
+                                <th scope="col" class="p-2 text-left text-sm font-extrabold text-gray-600">Color</th>
+                                <th scope="col" class="p-2 text-left text-sm font-extrabold text-gray-600">Stock</th>
+                                <th scope="col" class="p-2 text-left text-sm font-extrabold text-gray-600">Acciones</th>
+                            </tr>
+                            </thead>
+                            <tbody class="divide-y divide-gray-200 bg-white">
+                                <Coche
+                                    v-for="coche in coches"
+                                    :key="coche.carId"
+                                    :coche="coche"
+                                    @actualizar-stock="actualizarStock"
+                                    @eliminar-coche="eliminarCoche"
+                                />
 
-        <div v-if="existenCoches" class="flow-root mx-auto  mt-10 p-5 bg-white shadow">
-            <div class="-my-2 -mx-4 overflow-x-auto sm:-mx-6 lg:-mx-8">
-                <div class="min-w-full py-2 align-middle sm:px-6 lg:px-8">
-                    <table class="min-w-full divide-y divide-gray-300">
-                        <thead>
-                        <tr>
-                            <th scope="col" class="p-2 text-left text-sm font-extrabold text-gray-600">Marca</th>
-                            <th scope="col" class="p-2 text-left text-sm font-extrabold text-gray-600">Modelo</th>
-                            <th scope="col" class="p-2 text-left text-sm font-extrabold text-gray-600">Motor</th>
-                            <th scope="col" class="p-2 text-left text-sm font-extrabold text-gray-600">Fuel</th>
-                            <th scope="col" class="p-2 text-left text-sm font-extrabold text-gray-600">Color</th>
-                            <th scope="col" class="p-2 text-left text-sm font-extrabold text-gray-600">Stock</th>
-                            <th scope="col" class="p-2 text-left text-sm font-extrabold text-gray-600">Acciones</th>
-                        </tr>
-                        </thead>
-                        <tbody class="divide-y divide-gray-200 bg-white">
-                            <Coche
-                                v-for="coche in coches"
-                                :key="coche.carId"
-                                :coche="coche"
-                                @actualizar-stock="actualizarStock"
-                                @eliminar-coche="eliminarCoche"
-                            />
-
-                        </tbody>
-                    </table>
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
         </div>
-        <p v-else class="text-center mt-10">No hay coches</p>
+            <p v-else class="text-center mt-10">No hay coches</p>
     </div>
 </template>
