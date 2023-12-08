@@ -2,15 +2,23 @@
     import { computed } from 'vue';
     import { RouterLink, useRoute } from 'vue-router';
     import { useCochesStore } from '../../stores/coches';
+    import { useAuthStore } from '@/stores/auth';
 
     const paginaBusqueda = computed(() => route.name === 'busqueda');
 
     const route = useRoute()
     const store = useCochesStore()
+    const authStore = useAuthStore(); 
+    console.log(authStore.isAuthenticated);  // Asegúrate de que esto imprima `true` después del inicio de sesión
 
     const handleSubmit = () => {
         store.obtenerCoches()
     }
+
+    const logoutUser = () => {
+    authStore.logout();  
+    route.push('/login'); 
+}
 
 </script>
 
@@ -82,6 +90,15 @@
                     >
                         Pedidos
                     </RouterLink>
+                    <RouterLink
+                        v-if="authStore.isAuthenticated"
+                        @click="logoutUser"
+                        to="/login"
+                        class="text-white uppercase font-bold"
+                        active-class="text-orange-500"
+                    >
+                        Logout
+                    </RouterLink>
 
                 </nav>
             </div>
@@ -133,10 +150,3 @@
         </div>
     </header>
 </template>
-
-<style>
-    .header{
-        background-image: url('/img/bg.jpg');
-        background-position: center center;
-    }
-</style>
