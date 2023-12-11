@@ -3,19 +3,19 @@
     import { RouterLink } from 'vue-router';
 
     const props = defineProps({
-        coche: {
+        usuario: {
             type: Object
         }
     })
 
-    defineEmits(['actualizar-stock', 'eliminar-coche'])
+    defineEmits(['actualizar-estado', 'eliminar-usuario'])
 
-    const marcaCoche = computed(() => {
-        return props.coche.brand 
+    const nombreUsuario = computed(() => {
+        return props.usuario.name 
     })
 
-    const stockCoche = computed(() => {
-        return props.coche.stock
+    const estadoUsuario = computed(() => {
+        return props.usuario.active
     })
 </script>
 
@@ -23,42 +23,43 @@
 <template>
     <tr>
         <td class="whitespace-nowrap py-3 pl-4 text-sm text-gray-500">
-            <p class="font-medium text-gray-900">{{ coche.brand }}</p>
+            <p class="font-medium text-gray-900">{{ usuario.employee.employeeId }}</p>
+        </td>
+        <td class="whitespace-nowrap py-3 pl-4 text-sm text-gray-500">
+            <p class="font-medium text-gray-900">{{ usuario.username }}</p>
         </td>
         <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
-            <p class="font-medium text-gray-900">{{ coche.model }}</p>
+            <p class="font-medium text-gray-900">{{ usuario.employee.name + "\n" + usuario.employee.lastName}}</p>
         </td>
         <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
-            <p class="font-medium text-gray-900">{{ coche.motor }}</p>
+            <p class="font-medium text-gray-900">{{ usuario.employee.city }}</p>
         </td>
         <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
-            <p class="font-medium text-gray-900">{{ coche.fuel }}</p>
-        </td>
-        <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
-            <p class="font-medium text-gray-900">{{ coche.color }}</p>
+            <p class="font-medium text-gray-900">{{ usuario.employee.email }}</p>
         </td>
         <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
             <button
                 class="inline-flex rounded-full px-2 text-xs font-semibold leading-5"
-                :class="[stockCoche ? 'bg-green-100 text-green-800' : 'bg-red-100 text-red-800']"
-                @click="$emit('actualizar-stock',
-                 {carId: coche.carId, stock: coche.stock})"
+                :class="[estadoUsuario ? 'bg-green-100 text-green-800' : 'bg-red-100 text-red-800']"
+                @click="$emit('actualizar-estado',
+                 {userId: usuario.userId, active: usuario.active})"
             >
-                {{ stockCoche ? 'Disponible' : 'Fuera de Stock' }}
+                {{ estadoUsuario ? 'Activo' : 'Inactivo' }}
             </button>
         </td>
+
         <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
-            <p class="font-medium text-gray-900">{{ coche.basePrice + " €"}}</p>
+            <p class="font-medium text-gray-900">{{ usuario.creationDate }}</p>
         </td>
         <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
             <RouterLink 
-                :to="{ name: 'editar-coche', params: { carId: coche.carId } }"
+                :to="{ name: 'editar-usuario', params: { userId: usuario.userId } }"
                 class="text-indigo-600 hover:text-indigo-900 mr-5"
                 >Editar</RouterLink>
                 
                 <button
                     class="text-red-600 hover:text-red-900"
-                    @click="$emit('eliminar-coche', coche.carId)"
+                    @click="$emit('eliminar-usuario', usuario.userId)"
                 >
                     Eliminar
                 </button>

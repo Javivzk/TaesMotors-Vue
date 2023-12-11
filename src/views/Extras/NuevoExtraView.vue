@@ -82,7 +82,6 @@
                 placeholder="Email de Cliente"
                 prefix-icon="email"
                 help="Coloca el Nombre del Cliente que deseas registrar"
-                validation="required|email"
                 :validation-messages="{required:'El Email del Cliente es obligatorio', email: 'Coloca un email valido'}"
                 />
                 

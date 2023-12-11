@@ -92,12 +92,28 @@
                     </RouterLink>
                     <RouterLink
                         v-if="authStore.isAuthenticated"
+                        to="/listado-usuarios"
+                        class="text-white uppercase font-bold"
+                        active-class="text-orange-500"
+                    >
+                        Usuarios
+                    </RouterLink>
+                    <RouterLink
+                        v-if="authStore.isAuthenticated"
                         @click="logoutUser"
                         to="/login"
                         class="text-white uppercase font-bold"
                         active-class="text-orange-500"
                     >
                         Logout
+                    </RouterLink>
+                    <RouterLink
+                        v-if="!authStore.isAuthenticated"
+                        to="/register"
+                        class="text-white uppercase font-bold"
+                        active-class="text-orange-500"
+                    >
+                        Registrarse
                     </RouterLink>
 
                 </nav>

@@ -59,8 +59,8 @@
                     <table class="min-w-full divide-y divide-gray-300">
                         <thead>
                         <tr>
-                            <th scope="col" class="p-2 text-left text-sm font-extrabold text-gray-600">ID CLIENTE</th>
-                            <th scope="col" class="p-2 text-left text-sm font-extrabold text-gray-600">ID EMPLEADO</th>
+                            <th scope="col" class="p-2 text-left text-sm font-extrabold text-gray-600">CLIENTE</th>
+                            <th scope="col" class="p-2 text-left text-sm font-extrabold text-gray-600">EMPLEADO</th>
                             <th scope="col" class="p-2 text-left text-sm font-extrabold text-gray-600">MARCA DE COCHE</th>
                             <th scope="col" class="p-2 text-left text-sm font-extrabold text-gray-600">MODELO DE COCHE</th>
                             <th scope="col" class="p-2 text-left text-sm font-extrabold text-gray-600">PRECIO TOTAL</th>
