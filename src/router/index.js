@@ -89,6 +89,15 @@ const router = createRouter({
       },
     },
     {
+      path: '/busqueda-pedidos',
+      name: 'busqueda-pedidos',
+      component: () => import('../views/BusquedaPedidosView.vue'),
+      props: { titulo: 'Busqueda' },
+      meta: {
+        requiresAuth: true,
+      },
+    },
+    {
       path: '/listado-clientes',
       name: 'listado-clientes',
       component: () =>import('../views/Clientes/ClientesView.vue'),

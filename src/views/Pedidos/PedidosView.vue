@@ -52,6 +52,11 @@
                 Agregar Pedido
             </RouterLink>
         </div>
+        <div class="flex justify">
+            <RouterLink  to="busqueda-pedidos">
+                Buscar Pedidos
+            </RouterLink>
+        </div>
 
         <div v-if="existenPedidos" class="flow-root mx-auto  mt-10 p-5 bg-white shadow">
             <div class="-my-2 -mx-4 overflow-x-auto sm:-mx-6 lg:-mx-8">
