@@ -54,6 +54,11 @@
                 Agregar Coche
             </RouterLink>
         </div>
+        <div class="flex justify">
+            <RouterLink  to="busqueda">
+                Buscar Coches
+            </RouterLink>
+        </div>
         <div v-if="authStore.isAuthenticated">
             <div v-if="existenCoches" class="flow-root mx-auto  mt-10 p-5 bg-white shadow">
                 <div class="-my-2 -mx-4 overflow-x-auto sm:-mx-6 lg:-mx-8">

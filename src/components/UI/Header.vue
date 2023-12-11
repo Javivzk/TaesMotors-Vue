@@ -2,6 +2,7 @@
     import { computed } from 'vue';
     import { RouterLink, useRoute } from 'vue-router';
     import { useCochesStore } from '../../stores/coches';
+
     import { useAuthStore } from '@/stores/auth';
 
     const paginaBusqueda = computed(() => route.name === 'busqueda');
@@ -26,7 +27,7 @@
     
     <header
         class="bg-slate-800"
-        :class="{'header': paginaBusqueda}"
+        :class="{'header': paginaBusqueda }"
     >
         <div class="mx-auto container px-5 py-16">
 
@@ -47,13 +48,6 @@
                         active-class="text-orange-500"                    
                     >
                         Inicio
-                    </RouterLink>
-                    <RouterLink
-                        :to="{name: 'busqueda'}"
-                        class="text-white uppercase font-bold"
-                        active-class="text-orange-500"
-                    >
-                        Busqueda
                     </RouterLink>
                     <RouterLink
                         :to="{name: 'listado-coches'}"
