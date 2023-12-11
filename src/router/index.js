@@ -53,6 +53,33 @@ const router = createRouter({
       },
     },
     {
+      path: '/mazda3',
+      name: 'mazda3',
+      component: () => import('../views/Coches/Modelos/Mazda3View.vue'),
+      props: { titulo: 'Mazda 3' },
+      meta: {
+        requiresAuth: true,
+      },
+    },
+    {
+      path: '/mazdacx5',
+      name: 'mazdacx5',
+      component: () => import('../views/Coches/Modelos/Mazdacx5View.vue'),
+      props: { titulo: 'Mazda CX5' },
+      meta: {
+        requiresAuth: true,
+      },
+    },
+    {
+      path: '/mazdamx5',
+      name: 'mazdamx5',
+      component: () => import('../views/Coches/Modelos/Mazdamx5View.vue'),
+      props: { titulo: 'Mazda MX5' },
+      meta: {
+        requiresAuth: true,
+      },
+    },
+    {
       path: '/busqueda',
       name: 'busqueda',
       component: () => import('../views/BusquedaView.vue'),
@@ -102,6 +129,15 @@ const router = createRouter({
       name: 'listado-extras',
       component:() => import('../views/Extras/ExtrasView.vue'),
       props: { titulo: 'Listado de extras' },
+      meta: {
+        requiresAuth: true,
+      },
+    },
+    {
+      path: '/listado-usuarios',
+      name: 'listado-usuarios',
+      component:() => import('../views/Usuarios/UsuariosView.vue'),
+      props: { titulo: 'Listado de Usuarios' },
       meta: {
         requiresAuth: true,
       },
@@ -196,19 +232,29 @@ const router = createRouter({
         requiresAuth: true,
       },
     },
+      {
+        path: '/editar-usuario/:userId',
+        name: 'editar-usuario',
+        component: () => import('../views/Usuarios/EditarUsuarioView.vue'),
+        props: { titulo: 'Editar Usuario' },
+        meta: {
+          requiresAuth: true,
+        },
+    },
   
   ]
 })
 
 router.beforeEach((to, from, next) => {
   const requiresAuth = to.matched.some(record => record.meta.requiresAuth);
-  const isAuthenticated = localStorage.getItem('userToken'); // o cómo manejes la autenticación
-  
+  const isAuthenticated = localStorage.getItem('userToken');
+
   if (!requiresAuth) {
     next(); // No requiere autenticación, continúa con la navegación
-  } else if (isAuthenticated) {
+  } else if (requiresAuth && isAuthenticated) {
     next(); // La ruta requiere autenticación y el usuario está autenticado, continúa con la navegación
   } else {
+    console.log('Redirigiendo a /login');
     next('/login'); // Redirige al usuario al login
   }
 });

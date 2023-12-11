@@ -67,6 +67,7 @@
                                 <th scope="col" class="p-2 text-left text-sm font-extrabold text-gray-600">Fuel</th>
                                 <th scope="col" class="p-2 text-left text-sm font-extrabold text-gray-600">Color</th>
                                 <th scope="col" class="p-2 text-left text-sm font-extrabold text-gray-600">Stock</th>
+                                <th scope="col" class="p-2 text-left text-sm font-extrabold text-gray-600">Precio Base</th>
                                 <th scope="col" class="p-2 text-left text-sm font-extrabold text-gray-600">Acciones</th>
                             </tr>
                             </thead>
