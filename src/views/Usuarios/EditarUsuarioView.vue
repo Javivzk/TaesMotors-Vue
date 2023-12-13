@@ -133,6 +133,17 @@
                 v-model="formData.creationDate"
                 />
 
+                <FormKit
+                type="text"
+                label="ID Empleado"
+                name="employeeId"
+                placeholder="ID de Empleado"
+                prefix-icon="add"
+                validation="required"
+                :validation-messages="{required:'El id del empleado es obligatoria'}"
+                v-model="formData.employee.employeeId"
+                />
+
 
             </FormKit>
             </div>
