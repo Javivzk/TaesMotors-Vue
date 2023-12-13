@@ -17,6 +17,7 @@
         UsuarioService.getUser(userId)
             .then(({data}) => {
                 Object.assign(formData,data)
+            formData.employeeId = data.employee ? data.employee.employeeId : null;
             })
             .catch(error => console.log(error))
     })
@@ -135,14 +136,12 @@
 
                 <FormKit
                 type="text"
-                label="ID Empleado"
-                name="employeeId"
+                label="ID de Empleado"
+                name="employee.employeeId"
                 placeholder="ID de Empleado"
-                prefix-icon="add"
-                validation="required"
-                :validation-messages="{required:'El id del empleado es obligatoria'}"
-                v-model="formData.employee.employeeId"
-                />
+                help="ID del empleado asociado"
+                v-model="formData.employeeId"
+                 />
 
 
             </FormKit>

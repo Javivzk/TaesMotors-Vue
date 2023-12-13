@@ -23,19 +23,19 @@
 <template>
     <tr>
         <td class="whitespace-nowrap py-3 pl-4 text-sm text-gray-500">
-            <p class="font-medium text-gray-900">{{ usuario.employee.employeeId }}</p>
+            <p class="font-medium text-gray-900">{{ usuario.employee ? usuario.employee.employeeId : 'No asignado' }}</p>
         </td>
         <td class="whitespace-nowrap py-3 pl-4 text-sm text-gray-500">
             <p class="font-medium text-gray-900">{{ usuario.username }}</p>
         </td>
         <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
-            <p class="font-medium text-gray-900">{{ usuario.employee.name + "\n" + usuario.employee.lastName}}</p>
+            <p class="font-medium text-gray-900">{{ usuario.employee ? usuario.employee.name + " " + usuario.employee.lastName : 'No asignado' }}</p>
         </td>
         <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
-            <p class="font-medium text-gray-900">{{ usuario.employee.city }}</p>
+            <p class="font-medium text-gray-900">{{ usuario.employee ? usuario.employee.city : 'No asignado' }}</p>
         </td>
         <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
-            <p class="font-medium text-gray-900">{{ usuario.employee.email }}</p>
+            <p class="font-medium text-gray-900">{{ usuario.employee ? usuario.employee.email : 'No asignado' }}</p>
         </td>
         <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
             <button

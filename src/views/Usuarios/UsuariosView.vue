@@ -8,6 +8,8 @@
 
 
     const usuarios = ref([])
+    const usuario = ref([])
+
 
     onMounted(() => {
         UsuarioService.getUsers()
