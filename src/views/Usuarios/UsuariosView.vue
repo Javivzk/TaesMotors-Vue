@@ -59,8 +59,8 @@
                         <tr>
                             <th scope="col" class="p-2 text-left text-sm font-extrabold text-gray-600">ID EMPLEADO</th>
                             <th scope="col" class="p-2 text-left text-sm font-extrabold text-gray-600">Username</th>
-                            <th scope="col" class="p-2 text-left text-sm font-extrabold text-gray-600">Nombre del Cliente</th>
-                            <th scope="col" class="p-2 text-left text-sm font-extrabold text-gray-600">Ciudad del Cliente</th>
+                            <th scope="col" class="p-2 text-left text-sm font-extrabold text-gray-600">Nombre del Empleado</th>
+                            <th scope="col" class="p-2 text-left text-sm font-extrabold text-gray-600">Ciudad del Empleado</th>
                             <th scope="col" class="p-2 text-left text-sm font-extrabold text-gray-600">Email</th>
                             <th scope="col" class="p-2 text-left text-sm font-extrabold text-gray-600">Estado</th>
                             <th scope="col" class="p-2 text-left text-sm font-extrabold text-gray-600">Fecha Creacion</th>
